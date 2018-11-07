@@ -12,7 +12,8 @@
 </head>
 <body>
     <?php
-    require_once 'core/init.php';
+	require_once 'core/init.php';
+	
 
         if (Session::exists('home'))
         {
@@ -32,7 +33,8 @@
                     <div class="col-9 social">
                         <a href= "logout.php">Log out</a>
                         <a href= "update.php">Update details</a>
-                        <a href= "changepassword.php">Change Password</a>
+						<a href= "changepassword.php">Change Password</a>
+						<a href= "gallery.php">Gallery</a>
                     </div>
                 </div>
             </div>
@@ -85,8 +87,8 @@
         </div>
 
         <!-- START post -->
-        <!--div class="thumb_nail">
-			<?php/*
+        <div class="thumb_nail">
+			<?php
 				$db = DB::getInstance();
 				$db->get("gallery",array('user_id', '=', $user->data()->user_id));
 				$images = $db->results();
@@ -94,9 +96,9 @@
 
 				for ($i=0; $i < 10 && $num_images >= 0; $i++) { 
 					$img = $images[$num_images]->img_name;
-					echo "<img src='$img' height='80px' width='80px' style='margin: 5px; margin-bottom: 1px; margin-top: 1px'>";
+					echo "<img src='$img' height='250px' width='375px'>";
 					$num_images--;
-				}*/ 
+				} 
 			?>
 		</div>
         <!-- END post -->
@@ -225,7 +227,7 @@
         </div>
         <section class="site-section">
             <?php 
-                echo '<p> You need to <a href="login.php">log in</a> or <a href="register.php">register</a>!</p>';
+                echo '<p> You need to <a href="login.php">log in</a> or <a href="register.php">register</a>  or view <a href="gallery.php">Gallery</a>!</p>';
             ?>
         </section>
         <?php

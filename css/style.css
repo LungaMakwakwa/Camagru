@@ -204,75 +204,9 @@ body {
   
   .post-entry-horzontal {
     margin-bottom: 30px;
-  }
-  
-  .post-entry-horzontal a {
-    display: table;
-  }
-  
-  .post-entry-horzontal a .image, .post-entry-horzontal a .text {
-    display: table-cell;
-    vertical-align: middle;
-  }
-  
-  .post-entry-horzontal a .image {
-    width: 200px;
-    background-size: cover;
-    background-position: center center;
-  }
-  
-  .post-entry-horzontal a .text {
-    padding: 30px;
-    width: calc(100 - 200px);
-    border: 1px solid #e6e6e6;
-    border-left: none;
-  }
-  
-  .post-entry-horzontal a .text h2 {
-    font-size: 20px;
-  }
-  
-  .post-entry-horzontal a .text p {
-    color: #999999;
-    margin-bottom: 30px;
-  }
-  
-  .post-entry-horzontal a:hover {
     -webkit-box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
-  }
-  
-  .post-entry-sidebar .post-meta {
-    font-size: 14px;
-    color: #b3b3b3;
-  }
-  
-  .post-entry-sidebar ul {
-    padding: 0;
-    margin: 0;
-  }
-  
-  .post-entry-sidebar ul li {
-    list-style: none;
-    padding: 0 0 20px 0;
-    margin: 0 0 20px 0;
-  }
-  
-  .post-entry-sidebar ul li a {
-    display: table;
-  }
-  
-  .post-entry-sidebar ul li a img {
-    width: 90px;
-  }
-  
-  .post-entry-sidebar ul li a img, .post-entry-sidebar ul li a .text {
-    display: table-cell;
-    vertical-align: middle;
-  }
-  
-  .post-entry-sidebar ul li a .text h4 {
-    font-size: 18px;
+    width: 250px;
   }
   
   .site-footer {
@@ -305,9 +239,21 @@ body {
 
 
 /**************************************************************/
-/*              Web cam style                                 */
+/*              LIKE BUTTON                                   */
 /**************************************************************/
 
+.like
+{
+    display: inline-block;
+    background: #007bff;
+    padding: 2px 8px;
+    line-height: 1.5;
+    font-size: 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    color: #fff !important;
+    margin-right: 10px;
+}
 
 /***************************************************************/
 /*              OVERLAYER AND STICKERS STYLE                   */
@@ -373,13 +319,13 @@ body {
     top: 330px;
     width: 20%;
 }
-.thumb_nail
+/*.thumb_nail
 {
     position: absolute;
     top: 335px;
     left: 70%;
     width: 20%;
-}
+}*/
 
 #video
 {
@@ -397,5 +343,17 @@ body {
 
 .thumb_nail
 {
-  padding-top: 50%;
+  position: static;
+  border: #007bff;
+  width: 300px;
 }
+
+input[type=text] {
+  border: 2px solid gray;
+  border-radius: 4px;
+}
+
+.image{
+  width :260px;
+}
+

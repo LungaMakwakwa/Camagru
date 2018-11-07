@@ -80,7 +80,7 @@
                 if (!strcmp($this->_data->username, $username)) 
                 {
                     //echo $this->data()->passwd;
-                    if($this->data()->password === hash::make($password))
+                    if($this->data()->password === Hash::make($password))
                     {
                         Session::put($this->_sessionName, $this->data()->user_id);
                     }

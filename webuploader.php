@@ -52,7 +52,7 @@
             'img_name' => 'img/gallery/'."user_".$user_id."_image_".$img_id.'.png',
             'user_id' => $user_id
         ));
-        redirect::to("index.php"); 
+        Redirect::to("index.php"); 
 
         function pic_position($emo)
         {
