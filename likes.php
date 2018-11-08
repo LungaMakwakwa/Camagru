@@ -13,6 +13,5 @@
                 'user_id' => $user->data()->user_id
             ));
         }
-        
         Redirect::to('gallery.php');
 ?>

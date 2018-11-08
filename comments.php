@@ -18,7 +18,7 @@
         $total = $db->count() - 1;
         echo($total);
     }
-
+    
     Redirect::to('gallery.php');
     
 ?>

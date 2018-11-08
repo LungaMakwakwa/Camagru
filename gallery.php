@@ -71,9 +71,11 @@ function likecount($picid)
         <div class="thumb_nail">
             <?php
                 $db = DB::getInstance();
-				$db->get("gallery",array('user_id', '>', 1));
-				$images = $db->results();
+                $db->get("gallery",array('user_id', '>', 1));
+                $images = $db->results();
+                
                 $num_images = $db->count() - 1;
+                $y = 0;
                 
 				for ($i=0; $i < 10 && $num_images >= 0; $i++) { 
                     $img = $images[$num_images]->img_name;
@@ -94,7 +96,14 @@ function likecount($picid)
                                     <input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/>
                                 </form>
                                 <span class='mr-2'>$time</span> &bullet;
-                                <a href = 'previewcomments.php'><span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span></a>
+                                <span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span>
+                                <Button class = 'viewComments' onclick='hidetest(".$y.")'>View Comments</button>
+                                <div id = 'hidden".$y."' style = 'display:none' >
+                                    <p>this is a comment</p><hr>
+                                    <p>this is a comment2</p><hr>
+                                    <p>this is a comment3</p><hr>
+                                    <p>this is a comment4</p><hr>
+                                </div>
                                 <form action = 'comments.php' method='post'>
                                     <input type='text' name='comment' id = 'comment' autocomplete='off' placeholder='Comment on Picture' align = 'left'/>
                                     <input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/>
@@ -105,7 +114,8 @@ function likecount($picid)
                     </div>
 
                     ";
-					$num_images--;
+                    $num_images--;
+                    $y++;
                 }
             ?>
             </div>
@@ -172,6 +182,24 @@ function likecount($picid)
         <?php
     }
     ?>
+    <script>
 
+        function hidden_div(y) {
+            var x = document.getElementById("hidden"+y);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+        function hidetest(y) {
+            var x = document.getElementById("hidden"+y);
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
     </body>
 </html>

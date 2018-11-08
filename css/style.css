@@ -239,7 +239,7 @@ body {
 
 
 /**************************************************************/
-/*              LIKE BUTTON                                   */
+/*              LIKE and COMMENT BUTTON                       */
 /**************************************************************/
 
 .like
@@ -254,6 +254,21 @@ body {
     color: #fff !important;
     margin-right: 10px;
 }
+
+.viewComments
+{
+    display: inline-block;
+    background: #007bff;
+    padding: 2px 8px;
+    line-height: 1.5;
+    font-size: 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    color: #fff !important;
+    margin-right: 10px;
+}
+
+
 
 /***************************************************************/
 /*              OVERLAYER AND STICKERS STYLE                   */
