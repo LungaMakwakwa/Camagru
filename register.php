@@ -45,7 +45,8 @@
                         'name' => Input::get('name'),
                         'joined' => date('Y-m-d H:i:s'),
                         'groups' => 1,
-                        'email' => Input::get('email')
+                        'email' => Input::get('email'),
+                        'email_code' => md5(Input::get('username') + microtime())
                     ));
                     // Redirect
                     Session::flash('success', 'Confimation Email Sent. You registered successfully!');

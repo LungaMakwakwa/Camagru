@@ -18,7 +18,10 @@
         $total = $db->count() - 1;
         echo($total);
     }
-    
+
+    /////////////////////////////
+    //      comments displayer
+    /////////////////////////////
     Redirect::to('gallery.php');
     
 ?>

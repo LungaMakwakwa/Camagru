@@ -3,6 +3,12 @@
         /////////////////////////////
         //      comment validation 
         /////////////////////////////
+
+        $db = DB::get("likes", array("imgid", '=', $imgid))
+        
+        if ()
+
+
         $user = new User();
         if (Input::exists())
         {

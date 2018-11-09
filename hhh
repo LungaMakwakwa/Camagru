@@ -1,1 +1,0 @@
-                                <input type='submit' class = 'viewComments' value = 'View Comments' onclick = 'hidden_div('hidden".$y."')'/>

@@ -16,7 +16,32 @@ function likecount($picid)
     $total = $db->count();
     return $total;
 }
+/////////////////////////////////////////////////////////////////
+//      FIX!!! ONLY ECHOS ONE COMMENT
+/////////////////////////////////////////////////////////////////
+function showcomments($theid)
+{
+    $db = DB::getInstance();
+    $db->get("comments",array('img_id', '=', $theid));
+    $comments = $db->results();
+   // print_r($comments);
+    $num_comments = $db->count() - 1;
 
+    $i = 0;
+    $my_com = "";
+    while ($num_comments >= $i) { 
+        $com = $comments[$i]->comment;
+        //return ($com);
+         $my_com ="<br>";
+        $i++;
+
+    }
+    return ($com);
+    //echo ($com);
+    //return ($com);
+    
+
+}
 
 ?>
 <!DOCTYPE html>
@@ -83,6 +108,7 @@ function likecount($picid)
                     $imgid = $images[$num_images]->img_id;
                     $total = commentcount($imgid);
                     $total_likes = likecount($imgid);
+
                     echo 
                     "
                     <div class='post-entry-horzontal'>
@@ -99,10 +125,7 @@ function likecount($picid)
                                 <span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span>
                                 <Button class = 'viewComments' onclick='hidetest(".$y.")'>View Comments</button>
                                 <div id = 'hidden".$y."' style = 'display:none' >
-                                    <p>this is a comment</p><hr>
-                                    <p>this is a comment2</p><hr>
-                                    <p>this is a comment3</p><hr>
-                                    <p>this is a comment4</p><hr>
+                                    <p>".showcomments($imgid)."</p><hr></br>
                                 </div>
                                 <form action = 'comments.php' method='post'>
                                     <input type='text' name='comment' id = 'comment' autocomplete='off' placeholder='Comment on Picture' align = 'left'/>
