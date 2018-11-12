@@ -59,14 +59,17 @@
 					<div id="overlay" class="overlay">
 						<img class="text" height='100px' width='100px' id="emoji1" name="emoji1" onclick="off()">
 						<img onclick="off2()" class="text" height='100px' width='100px' id="emoji2" name="emoji2">
-            		</div>
+					</div>
 					Stream not available				
 				</video>
+				<img id="uploaded_image" height='375px' width='500px' style= "display:none">
             </div>
             <!-- END VIDEO DIV-->
             <button id="photo_button">Take Photo</button>
             <canvas id="canvas2"></canvas>
             <button id="save_photo">Save</button>
+			<button id="uploadbtn">Upload</button>
+			<input type="file" id= "fileupload" style= "display:none">
 			<canvas id="canvas"></canvas>
 		</div>
         <div>

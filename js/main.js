@@ -5,12 +5,13 @@ window.onload = function()
 		height = 0,
 		streaming = false;
 
-	const video = document.getElementById('video');
+	video = document.getElementById('video');
 	const canvas1 = document.getElementById('canvas');
 	const canvas2 = document.getElementById('canvas2');
 	const photos = document.getElementById('photos');
 	const photo_button = document.getElementById('photo_button');
 	const save_photo = document.getElementById('save_photo');
+	const uploadbtn = document.getElementById('uploadbtn');
 
 	navigator.mediaDevices.getUserMedia({video: true, audio: false})
 
@@ -123,5 +124,22 @@ window.onload = function()
 		document.body.appendChild(form);
 		form.submit();
 	}
+
+	uploadbtn.addEventListener('click', function () {
+		imageupload = document.getElementById("fileupload");
+		imageupload.click();
+		imageupload.addEventListener('change', function () {
+		if (imageupload.files && imageupload.files[0]) {
+		var reader = new FileReader();
+					reader.onload = function (e) {
+						document.getElementById('uploaded_image').setAttribute('src', e.target.result);
+						document.getElementById('uploaded_image').style.display = "block";
+						document.getElementById('video').style.display = "none";
+						video = document.getElementById('uploaded_image');
+					};
+					reader.readAsDataURL(imageupload.files[0]);
+				}
+			});	
+	}, false);
 
 }

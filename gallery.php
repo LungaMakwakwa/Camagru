@@ -32,11 +32,11 @@ function showcomments($theid)
     while ($num_comments >= $i) { 
         $com = $comments[$i]->comment;
         //return ($com);
-         $my_com ="<br>";
+         echo ($com."<br>");
         $i++;
 
     }
-    return ($com);
+    //return ($com);
     //echo ($com);
     //return ($com);
     
