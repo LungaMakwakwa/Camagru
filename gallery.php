@@ -28,11 +28,11 @@ function showcomments($theid)
     $num_comments = $db->count() - 1;
 
     $i = 0;
-    $my_com = "";
     while ($num_comments >= $i) { 
         $com = $comments[$i]->comment;
         //return ($com);
-         echo ($com."<br>");
+         //com ="<br>";
+        echo $com."<br>";
         $i++;
 
     }
@@ -101,6 +101,7 @@ function showcomments($theid)
                 
                 $num_images = $db->count() - 1;
                 $y = 0;
+                $x = 0;
                 
 				for ($i=0; $i < 10 && $num_images >= 0; $i++) { 
                     $img = $images[$num_images]->img_name;
@@ -109,6 +110,10 @@ function showcomments($theid)
                     $total = commentcount($imgid);
                     $total_likes = likecount($imgid);
 
+                    $db->get("comments",array('img_id', '=', $imgid));
+                    $comments = $db->results();
+                    $t1 = json_encode($comments);
+                    //echo $t1;
                     echo 
                     "
                     <div class='post-entry-horzontal'>
@@ -125,7 +130,7 @@ function showcomments($theid)
                                 <span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span>
                                 <Button class = 'viewComments' onclick='hidetest(".$y.")'>View Comments</button>
                                 <div id = 'hidden".$y."' style = 'display:none' >
-                                    <p>".showcomments($imgid)."</p><hr></br>
+                                    <p id='$imgid'><script>loadmycomms('".$t1."','".$imgid."');showme();</script></p><hr></br>
                                 </div>
                                 <form action = 'comments.php' method='post'>
                                     <input type='text' name='comment' id = 'comment' autocomplete='off' placeholder='Comment on Picture' align = 'left'/>

@@ -143,3 +143,28 @@ window.onload = function()
 	}, false);
 
 }
+
+
+
+function loadmycomms(thejson, imgid)
+{
+	alert(thejson);
+	alert(imgid);
+	mycommsarray = JSON.parse(thejson);
+	 //console.log(mycommsarray.length);
+	var i = 0;
+	while (i < mycommsarray.length)
+	{
+		mycoms[0]['comment'];
+		i++;
+	}
+
+}
+function showme() {
+	alert("OKKKKK");
+} 
+
+function showcom(something)
+{
+	alert(soemthing);
+}
