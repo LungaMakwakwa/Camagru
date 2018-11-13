@@ -107,21 +107,21 @@
             return false;
         }
 
-        public function update($table, $id, $fields) {
+        public function update($table, $id, $fields)
+        {
             $set = '';
             $x = 1;
-
-            foreach ($fields as $name => $value) {
+            foreach ($fields as $name => $values) {
                 $set .= "{$name} = ?";
-                if ($x < count($fields)) {
-                    $set .= ', ';
-                }
-                $x++;
+                if($x < count($fields))
+                    {
+                        $set .= ', ';
+                    }
+                    $x++;
             }
-            //die ($set);
             $sql = "UPDATE {$table} SET {$set} WHERE `user_id` = {$id}";
-            //echo $sql;
-            if (!$this->query($sql, $fields)->error()) {
+            if (!$this->query($sql, $fields)->error())
+            {
                 return true;
             }
             return false;

@@ -18,5 +18,4 @@
         echo "Email invalid";
     }
 
-
 ?>

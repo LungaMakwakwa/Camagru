@@ -46,11 +46,9 @@
                         'joined' => date('Y-m-d H:i:s'),
                         'groups' => 1,
                         'email' => Input::get('email'),
-                        'email_code' => md5(Input::get('username') + microtime())
+                        'email_code' => md5(Input::get('email'))
                     ));
                     // Redirect
-                    Session::flash('success', 'Confimation Email Sent. You registered successfully!');
-                    Redirect::to('index.php');
                 }
 
                 catch (Exception $e)
@@ -67,6 +65,27 @@
                 }
             }
         }
+
+        /////////////////////////
+        //      EMAIL!!!
+        ////////////////////////
+
+        $username = Input::get('username');
+        $email_code = md5(Input::get('email'));
+        $email = Input::get('email');
+        $to = trim(Input::get('email'));
+        $subject = "Camagru activation code";
+        $txt = "Hi $username<br>Click link to activate account.<br>http://127.0.0.1:8080/camagru/activate.php?activate=$email_code&email=$email";
+        $mail = mail($to,$subject,$txt);
+        if ($mail)
+        {
+            echo "Confirmation Email Sent.";
+        }
+        else
+        {
+            echo "Email invalid";
+        }
+        //echo $txt;
     }
 ?>
 

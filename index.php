@@ -43,71 +43,92 @@
             <h1 class="site-logo" align = "center"><a href="index.html">Camagru</a></h1>
             <hr>
 
-        <div align = "center">  
-        	<!--div class="site-section"-->
-				<h2> Welcome <?php echo escape($user->data()->name); ?></h2>
+		<!-- TOP CONTAINER DIV START -->
+        <div class="top_container">  
+			<h2> Welcome <?php echo escape($user->data()->name); ?></h2>
+
+			<!-- MAIN CONTAINER DIV START -->
 			<div class = "main-container">
-            <!-- OVERLAY DIV -->
-            <div id="overlay" class="overlay">
-				<img class="text" height='100px' width='100px' id="emoji1" name="emoji1" onclick="off()">
-				<img onclick="off2()" class="text" height='100px' width='100px' id="emoji2" name="emoji2">
-            </div>
-            <!-- END OVERLAY DIV -->
-            <!-- VIDEO DIV -->
-            <div class = "video" width = "500" height = "375" border = "2px" bordercolor = "red">
-                <video id="video">
+			
+				<!-- KEEP OVERLAY IN PLACE DIV -->
+				<div class="overlay2">
+					<!-- OVERLAY DIV -->
 					<div id="overlay" class="overlay">
 						<img class="text" height='100px' width='100px' id="emoji1" name="emoji1" onclick="off()">
 						<img onclick="off2()" class="text" height='100px' width='100px' id="emoji2" name="emoji2">
 					</div>
-					Stream not available				
-				</video>
-				<img id="uploaded_image" height='375px' width='500px' style= "display:none">
-            </div>
-            <!-- END VIDEO DIV-->
-            <button id="photo_button">Take Photo</button>
-            <canvas id="canvas2"></canvas>
-            <button id="save_photo">Save</button>
-			<button id="uploadbtn">Upload</button>
-			<input type="file" id= "fileupload" style= "display:none">
-			<canvas id="canvas"></canvas>
+					<!-- END OVERLAY DIV -->
+				</div>
+				<!-- KEEP OVERLAY IN PLACE DIV -->
+				
+            	<!-- VIDEO DIV -->
+            	<div class = "video" width = "500" height = "375" border = "2px" bordercolor = "red">
+					<video id="video">
+						<div id="overlay" class="overlay">
+							<img class="text" height='100px' width='100px' id="emoji1" name="emoji1" onclick="off()">
+							<img onclick="off2()" class="text" height='100px' width='100px' id="emoji2" name="emoji2">
+						</div>
+						Stream not available				
+					</video>
+					<img id="uploaded_image" height='375px' width='500px' style= "display:none">
+            	</div>
+				<!-- END VIDEO DIV-->
+				
+				<!-- BUTTONS AND CANVAS STARTS -->
+				<button id="photo_button">Take Photo</button>
+				<canvas id="canvas2"></canvas>
+				<button id="save_photo">Save</button>
+				<button id="uploadbtn">Upload</button>
+				<input type="file" id= "fileupload" style= "display:none">
+				<canvas id="canvas"></canvas>
+				<!-- BUTTONS AND CANVAS ENDS -->
+
+			</div>
+			<!-- MAIN CONTAINER DIV END -->
+
+			<!-- EMOJI CONTAINER DIV START -->
+        	<div>
+				<img id="e1" src="img/emojis/emoj_1.png" height='50px' width='50px' style="margin: 17px">
+				<img id="e2" src="img/emojis/emoj_2.png" height='50px' width='50px' style="margin: 17px">
+				<img id="e3" src="img/emojis/emoj_3.png" height='50px' width='50px' style="margin: 17px">
+				<img id="e4" src="img/emojis/emoj_4.png" height='50px' width='50px' style="margin: 17px">
+				<img id="e5" src="img/emojis/emoj_5.png" height='50px' width='50px' style="margin: 17px">
+				<img id="e6" src="img/emojis/emoj_6.png" height='50px' width='50px' style="margin: 17px">
+				<img id="e7" src="img/emojis/emoj_7.png" height='50px' width='50px' style="margin: 17px">
+				<img id="e8" src="img/emojis/emoj_8.png" height='50px' width='50px' style="margin: 17px">
+				<img id="e9" src="img/emojis/emoj_9.png" height='50px' width='50px' style="margin: 17px">
+				<img id="e10" src="img/emojis/emoj_10.png" height='50px' width='50px' style="margin: 17px">
+				<br>
+			</div>
+			<!-- EMOJI CONTAINER DIV END -->
+			
+			<!-- BOTTOM CONTAINER DIV START -->
+			<div class="bottom-container">
+				<div id="photos"></div>
+			</div>
+			<!-- BOTTOM CONTAINER DIV END -->
+
+			<!-- POST DIV/ THUMBNAIL START -->
+			<div class="thumb_nail">
+				<?php
+					$db = DB::getInstance();
+					$db->get("gallery",array('user_id', '=', $user->data()->user_id));
+					$images = $db->results();
+					$num_images = $db->count() - 1;
+
+					for ($i=0; $i < 10 && $num_images >= 0; $i++) { 
+						$img = $images[$num_images]->img_name;
+						echo "<img src='$img' height='250px' width='375px'>";
+						$num_images--;
+					} 
+				?>
+			</div>
+			<!-- POST DIV/ THUMBNAIL ENDS -->
+
 		</div>
-        <div>
-            <img id="e1" src="img/emojis/emoj_1.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e2" src="img/emojis/emoj_2.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e3" src="img/emojis/emoj_3.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e4" src="img/emojis/emoj_4.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e5" src="img/emojis/emoj_5.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e6" src="img/emojis/emoj_6.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e7" src="img/emojis/emoj_7.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e8" src="img/emojis/emoj_8.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e9" src="img/emojis/emoj_9.png" height='50px' width='50px' style="margin: 17px">
-			<img id="e10" src="img/emojis/emoj_10.png" height='50px' width='50px' style="margin: 17px">
-			<br>
-        </div>
-        <div class="bottom-container">
-            <div id="photos"></div>
-        </div>
+		<!-- TOP CONTAINER DIV ENDS -->
 
-        <!-- START post -->
-        <div class="thumb_nail">
-			<?php
-				$db = DB::getInstance();
-				$db->get("gallery",array('user_id', '=', $user->data()->user_id));
-				$images = $db->results();
-				$num_images = $db->count() - 1;
 
-				for ($i=0; $i < 10 && $num_images >= 0; $i++) { 
-					$img = $images[$num_images]->img_name;
-					echo "<img src='$img' height='250px' width='375px'>";
-					$num_images--;
-				} 
-			?>
-		</div>
-        <!-- END post -->
-
-        </div>
-        </div>
 <script>
 	function off() {
 		document.getElementById("emoji1").style.visibility = "hidden";

@@ -279,11 +279,11 @@ body {
   width: 20%;
   height: 20%;
   top: 100;
-  left: 178px;
+  left: 585px;
   right: 70px;
   bottom: 30;
   z-index: 2;
-  background: #007bff;
+  /* background: #007bff; */
   cursor: pointer;
 }
 
@@ -298,8 +298,10 @@ body {
 
 .top_container
 {
-  width: 500px;
-  margin: 30px auto;
+  
+  /* background : gold; */
+  padding-left: 35%;
+
 }
 
 #canvas
@@ -370,5 +372,14 @@ input[type=text] {
 
 .image{
   width :260px;
+}
+
+.overlay2
+{
+  width: 600;
+  height: 475;
+  background: #000;
+  color: #000;
+
 }
 

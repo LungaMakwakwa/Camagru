@@ -146,10 +146,10 @@ window.onload = function()
 
 
 
-function loadmycomms(thejson, imgid)
+/*function loadmycomms(thejson, imgid)
 {
-	alert(thejson);
-	alert(imgid);
+	// alert(thejson);
+	// alert(imgid);
 	mycommsarray = JSON.parse(thejson);
 	 //console.log(mycommsarray.length);
 	var i = 0;
@@ -161,10 +161,10 @@ function loadmycomms(thejson, imgid)
 
 }
 function showme() {
-	alert("OKKKKK");
+	// alert("OKKKKK");
 } 
 
 function showcom(something)
 {
 	alert(soemthing);
-}
+}*/
