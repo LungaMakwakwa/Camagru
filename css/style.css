@@ -203,10 +203,15 @@ body {
   }
   
   .post-entry-horzontal {
-    margin-bottom: 30px;
+    margin-bottom: 2.5%;
+    align-items: center;
     -webkit-box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
-    width: 250px;
+    width: 500px;
+    height: 450px;
+    margin-left: 35%;
+    /* background: rgba(0, 0, 0, 0.5);
+    opacity: 80%; */
   }
   
   .site-footer {
@@ -360,9 +365,7 @@ body {
 
 .thumb_nail
 {
-  position: static;
-  border: #007bff;
-  width: 300px;
+  align-content: left;
 }
 
 input[type=text] {

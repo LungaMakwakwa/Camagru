@@ -73,5 +73,5 @@
             }
             
         }
-        //Redirect::to('gallery.php');
+        Redirect::to('gallery.php');
 ?>

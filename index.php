@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/main.js"></script>
+	<!--script src="js/pagination.js"></script-->
        
 </head>
 <body>
@@ -115,8 +116,15 @@
 					$db->get("gallery",array('user_id', '=', $user->data()->user_id));
 					$images = $db->results();
 					$num_images = $db->count() - 1;
+					$items_per_page = 5;
+					$total_pages = ceil($num_images/$items_per_page);
+					// echo $total_pages;
+					// echo "he";
+					$page = 1;
+					$offset = ($page - 1) * $items_per_page;
 
-					for ($i=0; $i < 10 && $num_images >= 0; $i++) { 
+
+					for ($i=0; $i < $items_per_page && $num_images >= 0; $i++) { 
 						$img = $images[$num_images]->img_name;
 						echo "<img src='$img' height='250px' width='375px'>";
 						$num_images--;
@@ -124,6 +132,15 @@
 				?>
 			</div>
 			<!-- POST DIV/ THUMBNAIL ENDS -->
+
+			<!-- START PAGINATION
+			<div id="images" class="photo" >
+			</div>
+			<div id="controls">
+				<button id="prev" onclick="prevset();">Previous</button>
+				<button id="next" onclick="nextset();">Next</button>
+			</div>
+			<!-- END PAGINATION -->
 
 		</div>
 		<!-- TOP CONTAINER DIV ENDS -->

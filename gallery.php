@@ -56,7 +56,7 @@ function showcomments($theid)
     <script src="js/main.js"></script>
        
 </head>
-<body>
+<body background="bg.jpg">
     <?php
 	require_once 'core/init.php';
 	
@@ -118,7 +118,7 @@ function showcomments($theid)
                     "
                     <div class='post-entry-horzontal'>
                         <div class = 'image'>
-                            <img src='$img' width='200px' heigh='167px' >
+                            <img src='$img' width='450px' heigh='400px' align = 'center'>
                         </div>
                         <span class = 'text'>
                             <div class='post-meta'>
@@ -133,7 +133,7 @@ function showcomments($theid)
                                     <p id='$imgid'><script>loadmycomms('".$t1."','".$imgid."');showme();</script></p><hr></br>
                                 </div>
                                 <form action = 'comments.php' method='post'>
-                                    <input type='text' name='comment' id = 'comment' autocomplete='off' placeholder='Comment on Picture' align = 'left'/>
+                                    <input style = 'width: 290px' type='text' name='comment' id = 'comment' autocomplete='off' placeholder='Comment on Picture' align = 'left'/>
                                     <input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/>
                                     <input type='submit' value = 'send'/>
                                 </form>
