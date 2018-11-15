@@ -59,10 +59,16 @@ function fetchPics() {
             }
             for (var i = 0; i < arrLength; i++) {
                 var img = document.createElement('img');
+                var comment = document.createElement('input');
+                var comment_form = document.createElement('form');
                 img.setAttribute('id', "eg" + i);
                 img.setAttribute('src', queryRes[i]['img_name']);
                 img.setAttribute('onclick', 'alert(this.id)');
+                comment_form.setAttribute('onclick', 'alert(this.id)');
                 myNode.appendChild(img);
+                comment_form.appendChild(comment);
+                myNode.appendChild(comment_form);
+
                 
 
 

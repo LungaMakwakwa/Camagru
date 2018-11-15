@@ -77,10 +77,10 @@ function showcomments($theid)
             <div class="top-bar">
                 <div class="container">
                     <div class="col-9 social">
-                        <a href= "logout.php">Log out</a>
-                        <a href= "update.php">Update details</a>
+                        <a href= "index.php">Profile</a>
+						<a href= "update.php">Update details</a>
 						<a href= "changepassword.php">Change Password</a>
-						<a href= "gallery.php">Gallery</a>
+						<a href= "logout.php">Log out</a>
                     </div>
                 </div>
             </div>
@@ -95,18 +95,39 @@ function showcomments($theid)
         <!-- START post -->
         <div class="thumb_nail">
             <?php
-                $db = DB::getInstance();
-                $db->get("gallery",array('user_id', '>', 1));
-                $images = $db->results();
+					$db = DB::getInstance();
+					$db->get("gallery",array('user_id', '>', 1));
+					$images = $db->results();
+					$num_images = $db->count() - 1;
+					$items_per_page = 5;
+					$total_pages = ceil($num_images/$items_per_page);
+					$page = 1;
+
+					if (!isset($_GET['page']))
+					{
+						$page = 1;
+					}
+					else
+					{
+						$page = $_GET['page'];
+					}
+
+					$this_page_first_result = ($page - 1) * $items_per_page;
+					$sql = "SELECT * FROM gallery LIMIT " . $items_per_page . " OFFSET " . $this_page_first_result ;
+					$db->query($sql);
+					$result = $db->results();
+					$num_res = $db->count();	
+
+					$i = 0;
                 
-                $num_images = $db->count() - 1;
-                $y = 0;
-                $x = 0;
-                
-				for ($i=0; $i < 10 && $num_images >= 0; $i++) { 
-                    $img = $images[$num_images]->img_name;
-                    $time = $images[$num_images]->time_stamp;
-                    $imgid = $images[$num_images]->img_id;
+				for ($i=0; $i < $num_res && $num_images >= 0; $i++) { 
+                    $y = 0;
+                    $img = $result[$i]->img_name;
+                    $time = $result[$i]->time_stamp;
+                    $imgid = $result[$i]->img_id;
+                    //$img = $images[$num_images]->img_name;
+                    //$time = $images[$num_images]->time_stamp;
+                    //$imgid = $images[$num_images]->img_id;
                     $total = commentcount($imgid);
                     $total_likes = likecount($imgid);
 
@@ -144,6 +165,10 @@ function showcomments($theid)
                     ";
                     $num_images--;
                     $y++;
+                }
+
+                for ($page=1;$page<=$total_pages;$page++) {
+                    echo '<a href="gallery.php?page=' . $page . '">' . $page . '</a> ';
                 }
             ?>
             </div>

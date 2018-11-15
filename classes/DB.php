@@ -55,6 +55,30 @@
             return $this;
         }
 
+        //prepare sql 
+        public function query2($sql, $params = array()) {
+            $this->_error = false;
+            if ($this->_query = $this->_pdo->prepare($sql)) {
+                $x = 1;
+                //check if param exist
+                if (count($params)) {
+                    foreach($params as $param) {
+                        $this->_query->bindValue($x, $param);
+                        $x++;
+                    }
+                }
+                //if no params still execute query
+                if ($this->_query->execute()) {
+                    //echo 'success';
+                    $this->_results = $this->_query->fetchAll();
+                    $this->_count = $this->_query->rowCount();
+                } else {
+                    $this->_error = true;
+                }
+            }
+            return $this;
+        }
+
         public function action($action, $table, $where = array()) {
             if (count($where) == 3) {
                 $operators = array('=', '>', '<', '>=', '<=');

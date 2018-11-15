@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/main.js"></script>
+	<script src="js/main.js"></script>
+	
 	<!--script src="js/pagination.js"></script-->
        
 </head>
@@ -32,10 +33,10 @@
             <div class="top-bar">
                 <div class="container">
                     <div class="col-9 social">
-                        <a href= "logout.php">Log out</a>
-                        <a href= "update.php">Update details</a>
-						<a href= "changepassword.php">Change Password</a>
 						<a href= "gallery.php">Gallery</a>
+						<a href= "update.php">Update details</a>
+						<a href= "changepassword.php">Change Password</a>
+						<a href= "logout.php">Log out</a>
                     </div>
                 </div>
             </div>
@@ -118,29 +119,48 @@
 					$num_images = $db->count() - 1;
 					$items_per_page = 5;
 					$total_pages = ceil($num_images/$items_per_page);
-					// echo $total_pages;
-					// echo "he";
 					$page = 1;
-					$offset = ($page - 1) * $items_per_page;
 
+					if (!isset($_GET['page']))
+					{
+						$page = 1;
+					}
+					else
+					{
+						$page = $_GET['page'];
+					}
 
-					for ($i=0; $i < $items_per_page && $num_images >= 0; $i++) { 
-						$img = $images[$num_images]->img_name;
-						echo "<img src='$img' height='250px' width='375px'>";
-						$num_images--;
-					} 
+					$this_page_first_result = ($page - 1) * $items_per_page;
+					$user_id = $user->data()->user_id;
+					$sql = "SELECT * FROM gallery WHERE user_id = $user_id LIMIT " . $items_per_page . " OFFSET " . $this_page_first_result ;
+					$db->query($sql);
+					$result = $db->results();
+					$num_res = $db->count();	
+
+					$i = 0;
+					while ($i < $num_res)
+					{
+						
+						echo "<img src='".$result[$i]->img_name."' height='250px' width='375px'>"."<br>";
+						$i++;
+						// echo ($i);
+					}
+
+					for ($page=1;$page<=$total_pages;$page++) {
+						echo '<a href="index.php?page=' . $page . '">' . $page . '</a> ';
+					}
 				?>
 			</div>
 			<!-- POST DIV/ THUMBNAIL ENDS -->
 
-			<!-- START PAGINATION
+			<!-- START PAGINATION 
 			<div id="images" class="photo" >
 			</div>
 			<div id="controls">
 				<button id="prev" onclick="prevset();">Previous</button>
 				<button id="next" onclick="nextset();">Next</button>
 			</div>
-			<!-- END PAGINATION -->
+			 END PAGINATION -->
 
 		</div>
 		<!-- TOP CONTAINER DIV ENDS -->
