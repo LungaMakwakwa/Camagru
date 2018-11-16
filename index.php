@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/w3.css">
 	<script src="js/main.js"></script>
 	
 	<!--script src="js/pagination.js"></script-->
@@ -23,6 +24,7 @@
         }
         $user = new User();
 
+		//echo ($user->data()->user_id);
 ////////////////////////////////////////////////////////////
 //          IF USER LOGGED IN!
 ////////////////////////////////////////////////////////////
@@ -47,7 +49,7 @@
 
 		<!-- TOP CONTAINER DIV START -->
         <div class="top_container">  
-			<h2> Welcome <?php echo escape($user->data()->name); ?></h2>
+			<h2 align = "center"> Welcome <?php echo escape($user->data()->name); ?></h2>
 
 			<!-- MAIN CONTAINER DIV START -->
 			<div class = "main-container">
@@ -64,7 +66,7 @@
 				<!-- KEEP OVERLAY IN PLACE DIV -->
 				
             	<!-- VIDEO DIV -->
-            	<div class = "video" width = "500" height = "375" border = "2px" bordercolor = "red">
+            	<div class = "video" width = "500" height = "375" border = "2px" bordercolor = "red" align = "center" style='width = 100%'>
 					<video id="video">
 						<div id="overlay" class="overlay">
 							<img class="text" height='100px' width='100px' id="emoji1" name="emoji1" onclick="off()">
@@ -77,30 +79,36 @@
 				<!-- END VIDEO DIV-->
 				
 				<!-- BUTTONS AND CANVAS STARTS -->
-				<button id="photo_button">Take Photo</button>
-				<canvas id="canvas2"></canvas>
-				<button id="save_photo">Save</button>
-				<button id="uploadbtn">Upload</button>
-				<input type="file" id= "fileupload" style= "display:none">
-				<canvas id="canvas"></canvas>
+				<div align = "center">
+					<button class= "w3-button w3-section w3-teal w3-ripple" id="photo_button">Take Photo</button>
+					<canvas id="canvas2"></canvas>
+					<button class= "w3-button w3-section w3-teal w3-ripple" id="save_photo">Save</button>
+					<button class= "w3-button w3-section w3-teal w3-ripple" id="uploadbtn">Upload</button>
+					<input class= "w3-button w3-section w3-teal w3-ripple" type="file" id= "fileupload" style= "display:none">
+					<canvas id="canvas"></canvas>
+				</div>
 				<!-- BUTTONS AND CANVAS ENDS -->
 
 			</div>
 			<!-- MAIN CONTAINER DIV END -->
 
 			<!-- EMOJI CONTAINER DIV START -->
-        	<div>
-				<img id="e1" src="img/emojis/emoj_1.png" height='50px' width='50px' style="margin: 17px">
-				<img id="e2" src="img/emojis/emoj_2.png" height='50px' width='50px' style="margin: 17px">
-				<img id="e3" src="img/emojis/emoj_3.png" height='50px' width='50px' style="margin: 17px">
-				<img id="e4" src="img/emojis/emoj_4.png" height='50px' width='50px' style="margin: 17px">
-				<img id="e5" src="img/emojis/emoj_5.png" height='50px' width='50px' style="margin: 17px">
-				<img id="e6" src="img/emojis/emoj_6.png" height='50px' width='50px' style="margin: 17px">
-				<img id="e7" src="img/emojis/emoj_7.png" height='50px' width='50px' style="margin: 17px">
-				<img id="e8" src="img/emojis/emoj_8.png" height='50px' width='50px' style="margin: 17px">
-				<img id="e9" src="img/emojis/emoj_9.png" height='50px' width='50px' style="margin: 17px">
-				<img id="e10" src="img/emojis/emoj_10.png" height='50px' width='50px' style="margin: 17px">
-				<br>
+        	<div class="w3-responsive">
+				<table class="w3-table-all" width = "500px">
+					<tr>
+						<td><img id="e1" src="img/emojis/emoj_1.png" height='50px' width='50px' style="margin: 17px"></td>
+						<td><img id="e2" src="img/emojis/emoj_2.png" height='50px' width='50px' style="margin: 17px"></td>
+						<td><img id="e3" src="img/emojis/emoj_3.png" height='50px' width='50px' style="margin: 17px"></td>
+						<td><img id="e4" src="img/emojis/emoj_4.png" height='50px' width='50px' style="margin: 17px"></td>
+						<td><img id="e5" src="img/emojis/emoj_5.png" height='50px' width='50px' style="margin: 17px"></td>
+						<td><img id="e6" src="img/emojis/emoj_6.png" height='50px' width='50px' style="margin: 17px"></td>
+						<td><img id="e7" src="img/emojis/emoj_7.png" height='50px' width='50px' style="margin: 17px"></td>
+						<td><img id="e8" src="img/emojis/emoj_8.png" height='50px' width='50px' style="margin: 17px"></td>
+						<td><img id="e9" src="img/emojis/emoj_9.png" height='50px' width='50px' style="margin: 17px"></td>
+						<td><img id="e10" src="img/emojis/emoj_10.png" height='50px' width='50px' style="margin: 17px"></td>
+						<br>
+					</tr>
+				</table>
 			</div>
 			<!-- EMOJI CONTAINER DIV END -->
 			
@@ -111,13 +119,13 @@
 			<!-- BOTTOM CONTAINER DIV END -->
 
 			<!-- POST DIV/ THUMBNAIL START -->
-			<div class="thumb_nail">
+			<div class="w3-row-padding w3-margin-top">
 				<?php
 					$db = DB::getInstance();
 					$db->get("gallery",array('user_id', '=', $user->data()->user_id));
 					$images = $db->results();
 					$num_images = $db->count() - 1;
-					$items_per_page = 5;
+					$items_per_page = 3;
 					$total_pages = ceil($num_images/$items_per_page);
 					$page = 1;
 
@@ -141,16 +149,30 @@
 					while ($i < $num_res)
 					{
 						
-						echo "<img src='".$result[$i]->img_name."' height='250px' width='375px'>"."<br>";
+						echo "
+							<div class='w3-third'>
+								<div class='w3-card'>
+									<img src='".$result[$i]->img_name."' style='width:100%'>"."<br>
+									<div class='w3-container'>
+										<p> A </p>
+										<p> B </p>
+										<p> C </p>
+									</div>
+								</div>
+							</div>
+						";
 						$i++;
-						// echo ($i);
 					}
-
+					echo "</div>";
+					echo "<div align='center' class='pagination2'>";
 					for ($page=1;$page<=$total_pages;$page++) {
-						echo '<a href="index.php?page=' . $page . '">' . $page . '</a> ';
+						echo '
+
+									<a href="index.php?page=' . $page . '">' . $page . '</a> 	
+							';
 					}
+					echo "</div>";
 				?>
-			</div>
 			<!-- POST DIV/ THUMBNAIL ENDS -->
 
 			<!-- START PAGINATION 
@@ -282,13 +304,13 @@
         <div class="container">
             <div class="col-9 social">
               <p align = "center">WELCOME TO CAMAGRU</p>
-              <!--<img src = "img/camera_icon.jpg" alt = "camera icon" height = "75px" width = "75px">-->
+              <!-- <img src = "img/camera_icon.jpg" alt = "camera icon" height = "75px" width = "75px"> -->
             </div>
         </div>
         </div>
         <section class="site-section">
             <?php 
-                echo '<p> You need to <a href="login.php">log in</a> or <a href="register.php">register</a>  or view <a href="gallery.php">Gallery</a>!</p>';
+				echo '<p> You need to <a href="login.php">LOG IN</a> or <a href="register.php">REGISTER</a>  or view <a href="gallery.php">GALLERY</a>!</p>';
             ?>
         </section>
         <?php

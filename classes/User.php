@@ -1,7 +1,7 @@
 <?php
     class User
     {
-        private $_db;
+        private $_db ;
         private $_data;
         private $_sessionName;
         private $_isLoggedIn;

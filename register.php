@@ -99,6 +99,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/w3.css">
 </head>
 <body>
     <!-- START header -->
@@ -119,10 +120,49 @@
     <!-- END header -->
 
     <!-- START CONTENT AREA-->
-    <div>
-    <form action = "" method="post">
+    <div align = "center">
+    <form action = "" method="post" class="w3-container w3-card-4">
 
-        <div class="field">
+        <div class = "field">
+            <p>
+                <input class="w3-input" name="username" id = "username" type="text" style="width:90%" required>
+                <label>Username</label>
+            </p>
+        </div>
+        <div class = "field">
+            <p>
+                <input class="w3-input" name="password" id = "password" type="password" style="width:90%" required>
+                <label>Password</label>
+            </p>
+        </div>
+        <div class = "field">
+            <p>
+                <input class="w3-input" name="password_again" id = "password_again" type="password" style="width:90%" required>
+                <label>Re-type Password</label>
+            </p>
+        </div>
+        <div class = "field">
+            <p>
+                <input class="w3-input" name="name" id = "name" type="text" style="width:90%" required>
+                <label>Name</label>
+            </p>
+        </div>
+        <div class = "field">
+            <p>
+                <input class="w3-input" name="email" id = "email" type="text" style="width:90%" required>
+                <label>E-mail</label>
+            </p>
+        </div>
+        
+            <input type= "hidden" name= "token" value= "<?php echo Token::generate(); ?>">
+            <p>
+                <a href = "login.php">Already Have An Account Please Login!</a>
+            </p>
+            <p>
+                <button class="w3-button w3-section w3-teal w3-ripple"> Register </button>
+            </p>
+
+        <!-- <div class="field">
             <label for="username">Username</label></br>
             <input type="text" name="username" id="username" value="" autocomplete="off" placeholder="Enter Username">
         </div>
@@ -148,8 +188,9 @@
         </div>
 
         <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-        <input type="submit" value="Register">
+        <input type="submit" value="Register"> -->
+        </form>
     </div>
-</form>
+
 </body>
 </html>

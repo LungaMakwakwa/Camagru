@@ -112,36 +112,6 @@ body {
     height: inherit;
   }
   
-  
-  .pagination {
-    margin-bottom: 5em;
-    text-align: center !important;
-    display: block;
-  }
-  
-  .pagination li {
-    margin-right: 5px;
-    margin-bottom: 5px;
-    display: inline-block;
-  }
-  
-  .pagination li a {
-    border-radius: 50% !important;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-    padding: 0;
-    margin: 0;
-    display: inline-block;
-    text-align: center;
-  }
-  
-  .pagination li a:hover {
-    background: #007bff;
-    color: #fff;
-    border: 1px solid transparent;
-  }
-  
   .categories, .sidelink {
     padding: 0;
     margin: 0;
@@ -301,14 +271,6 @@ body {
   background: #007bff;
 }
 
-.top_container
-{
-  
-  /* background : gold; */
-  padding-left: 35%;
-
-}
-
 #canvas
 {
     display: none;
@@ -368,10 +330,10 @@ body {
   align-content: left;
 }
 
-input[type=text] {
+/* input[type=text] {
   border: 2px solid gray;
   border-radius: 4px;
-}
+} */
 
 .image{
   width :260px;
@@ -385,4 +347,22 @@ input[type=text] {
   color: #000;
 
 }
+/* 
+.pagination2 {
+  display: inline-block;
+} */
 
+.pagination2 a {
+  color: black;
+  padding: 16px 20px;
+  padding-left: 10px;
+  align-self: center;
+  text-decoration: none;
+}
+
+.pagination2 a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination2 a:hover:not(.active) {background-color: #ddd;}

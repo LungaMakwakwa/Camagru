@@ -29,7 +29,7 @@
                 ),
             ));
 
-            if ($validation->passes())
+            if ($validation->passed())
             {
                 //change of password
                 if (Hash::make(Input::get('password_current')) !== $user->data()->password)

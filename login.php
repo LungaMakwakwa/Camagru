@@ -50,6 +50,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/w3.css">
 
 </head>
 <body>
@@ -72,19 +73,32 @@
 
     <!-- START content area -->
     <div align = "center">
-    <form action = "" method="post">
+    <form action = "" method="post" class="w3-container w3-card-4">
         <div class = "field">
-            <label for = "username">Username</label></br>
-            <input type="text" name="username" id = "username" autocomplete="off" placeholder="Enter Username"/>
+            <p>
+                <input class="w3-input" name="username" id = "username" type="text" style="width:90%" required>
+                <label>Name</label>
+            </p>
         </div>
-
         <div class = "field">
-            <label for = "password">Password</label></br>
-            <input type="password" name="password" id = "password" autocomplete="off" placeholder="Enter Password"/>
+            <p>
+                <input class="w3-input" name="password" id = "password" type="password" style="width:90%" required>
+                <label>Password</label>
+            </p>
         </div>
-
             <input type= "hidden" name= "token" value= "<?php echo Token::generate(); ?>">
-            <input type="submit" value="log in"/>
+            <p>
+                <button class="w3-button w3-section w3-teal w3-ripple"> Log in </button>
+            </p>
+        <div class="col-9 social">
+                <a href = "forgotpassword.php">Forgot Password?</a>
+        </div>
+        <div class="col-9 social">
+            <p>
+                <a href = "register.php">No Account Please Register!</a>
+            </p>
+        </div>
+
     </form>
     <link rel="stylesheet" href="css/style.css">
     </div>
