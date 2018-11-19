@@ -161,34 +161,6 @@
             <p>
                 <button class="w3-button w3-section w3-teal w3-ripple"> Register </button>
             </p>
-
-        <!-- <div class="field">
-            <label for="username">Username</label></br>
-            <input type="text" name="username" id="username" value="" autocomplete="off" placeholder="Enter Username">
-        </div>
-
-        <div class="field">
-            <label for="password">Password</label></br>
-            <input type="password" name="password" id="password" placeholder="Enter Password">
-        </div>
-
-        <div class="field">
-            <label for="password_again">Re-Type Password</label></br>
-            <input type="password" name="password_again" id="password_again" placeholder="Enter Password Again">
-        </div>
-
-        <div class="field">
-            <label for="name">Name</label></br>
-            <input type="text" name="name" id="name" placeholder="Enter Name">
-        </div>
-
-        <div class="field">
-            <label for="name">E-mail</label></br>
-            <input type="text" name="email" id="email" placeholder="Enter Email Address">
-        </div>
-
-        <input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-        <input type="submit" value="Register"> -->
         </form>
     </div>
 

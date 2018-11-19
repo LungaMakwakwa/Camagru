@@ -16,7 +16,24 @@
 <body>
     <?php
 	require_once 'core/init.php';
-	
+
+		function commentcount($picid)
+		{
+			$db = DB::getInstance();
+			$db->get("comments",array('img_id', '=', $picid));
+			$imid = $db->results();
+			$total = $db->count();
+			return $total;
+		}
+
+		function likecount($picid)
+		{
+			$db = DB::getInstance();
+			$db->get("likes",array('img_id', '=', $picid));
+			$imid = $db->results();
+			$total = $db->count();
+			return $total;
+		}
 
         if (Session::exists('home'))
         {
@@ -36,7 +53,8 @@
                 <div class="container">
                     <div class="col-9 social">
 						<a href= "gallery.php">Gallery</a>
-						<a href= "update.php">Update details</a>
+						<a href = "update_details.php">Update Details</a> 
+						<a href= "update.php">Update</a>
 						<a href= "changepassword.php">Change Password</a>
 						<a href= "logout.php">Log out</a>
                     </div>
@@ -146,22 +164,41 @@
 					$num_res = $db->count();	
 
 					$i = 0;
+					$y = 0;
 					while ($i < $num_res)
 					{
+                    	$time = $result[$i]->time_stamp;
+						$imgid = $result[$i]->img_id;
+						$total = commentcount($imgid);
+						$total_likes = likecount($imgid);
+						$db->get("comments",array('img_id', '=', $imgid));
+    					$comments = $db->results();
+    					$num_comments = $db->count() - 1;
 						
 						echo "
-							<div class='w3-third'>
-								<div class='w3-card'>
+							<div class ='w3-third'>
+								<div class ='w3-card'>
 									<img src='".$result[$i]->img_name."' style='width:100%'>"."<br>
 									<div class='w3-container'>
-										<p> A </p>
-										<p> B </p>
-										<p> C </p>
+                                    	<p>$total_likes  <input type='submit' class = 'like2' value = 'LIKE'/></p>
+                                    	<p><input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/></p>
+										<p><span class='mr-2'>$time</span> &bullet;
+										<span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span></p>
+										<p><Button class = 'viewComments' onclick='hidetest(".$y.")'>View Comments</button></p>
+										<div id = 'hidden".$y."' style = 'display:none' >";
+											$x = 0;
+											while ($num_comments >= $x) { 
+												$com = $comments[$x]->comment;
+												echo $com."<br><hr>";
+												$x++;
+											}
+						echo "					
+                                		</div>
 									</div>
 								</div>
-							</div>
-						";
+							</div>";
 						$i++;
+						$y++;
 					}
 					echo "</div>";
 					echo "<div align='center' class='pagination2'>";
@@ -289,7 +326,31 @@
 				emoswitch.style.left = "200px";
 				break;
 		}
-	}  
+	} 
+	
+	
+	///////////////////////////////////////////////////
+	//			comments hidden div
+	//////////////////////////////////////////////////
+
+	function hidden_div(y) {
+        var x = document.getElementById("hidden"+y);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+	}
+	
+    function hidetest(y) {
+        var x = document.getElementById("hidden"+y);
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+
         </script>
     <?php
 ///////////////////////////////////////////////////////////////////////////////

@@ -3,55 +3,39 @@
 
     $user = new User();
 
-    if (!$user->isLoggedIn())
-    {
-        Redirect::to('index.php');
-    }
+    $user_id = $user->data()->user_id;
+    echo $user_id."<br>";
+    $name = escape(INPUT::get('name'));
+    echo "name = $name<br>";
+    $username = escape(INPUT::get('username'));
+    echo "username = $username<br>";
+    $email = escape(INPUT::get('email'));
+    echo "email = $email<br>";
+    $db = DB::getInstance();
 
-    if (Input::exists())
+    if ($name)
     {
-        if (Token::check(Input::get('token')))
-        {
-            $validate = new Validate();
-            $validation = $validate->check($_POST, array(
-                'name' => array(
-                    'required' => true,
-                    'min' => 2,
-                    'max' => 50
-                )
-            ));
-        }
-        if ($validation->passed())
-        {
-            try
-            {
-                $user->update(array(
-                    'name' => Input::get('name')
-                ));
-
-                Session::flash('home', 'Your details have been updated.');
-                Redirect::to('index.php');
-            }
-            catch(Exception $e)
-            {
-                die($e->getMessage());
-            }
-        }
-        else
-        {
-            foreach($validation->errors() as $error)
-            {
-                echo $error, ' ';
-            } 
-        }
+        echo ("i am in name <br>");
+        $update = $db->query( "UPDATE users SET `name` = ? WHERE `user_id` = ?", array("name"=>$name, "user_id"=>$user_id));
+        echo $db->count()."<br>";
+        //echo $name_sql."<br>";
     }
+    if ($username)
+    {
+        echo ("i am in username <br>");
+        //$username_sql = "UPDATE users SET username = $username WHERE user_id = $user_id";
+
+        $update = $db->query( "UPDATE users SET username = ? WHERE `user_id` = ?", array("username"=>$username, "user_id"=>$user_id));
+        echo $db->count()."<br>";
+        //echo $username_sql."<br>";
+    }
+    if ($email)
+    {
+        echo ("i am in email <br>");
+        $update = $db->query( "UPDATE users SET email = ? WHERE `user_id` = ?", array("email"=>$email, "user_id"=>$user_id));
+        echo $db->count()."<br>";
+    }
+    Session::flash('Details', 'You have succesfully updated your Personal Details.');
+    Redirect::to('update_details.php');
+
 ?>
-
-<form action="" method="post">
-    <div class = "field">
-        <label for="name">Name</label>
-        <input type = "text" name="name" value="<?php echo escape($user->data()->name);?>">
-        <input type = "submit" value="Upadate">
-        <input type = "hidden" name="token" value = "<?php echo Token::generate(); ?>">
-    </div>
-</form>

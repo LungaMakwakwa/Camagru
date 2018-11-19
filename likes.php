@@ -73,5 +73,6 @@
             }
             
         }
-        Redirect::to('gallery.php');
+        $page = $_POST['page_no'];
+        Redirect::to("gallery.php?page=".$page);
 ?>

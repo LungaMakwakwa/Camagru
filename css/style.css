@@ -230,7 +230,33 @@ body {
     margin-right: 10px;
 }
 
+.like2
+{
+    display: inline-block;
+    background: red;
+    padding: 2px 8px;
+    line-height: 1.5;
+    font-size: 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    color: #fff !important;
+    margin-right: 10px;
+}
+
 .viewComments
+{
+    display: inline-block;
+    background: #007bff;
+    padding: 2px 8px;
+    line-height: 1.5;
+    font-size: 12px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    color: #fff !important;
+    margin-right: 10px;
+}
+
+.comments
 {
     display: inline-block;
     background: #007bff;

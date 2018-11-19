@@ -49,6 +49,7 @@
     /////////////////////////////
     //      comments displayer
     /////////////////////////////
-    Redirect::to('gallery.php');
+    $page = $_POST['page_num'];
+    Redirect::to('gallery.php?page='.$page);
     
 ?>

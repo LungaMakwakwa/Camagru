@@ -27,13 +27,13 @@ function showcomments($theid)
    // print_r($comments);
     $num_comments = $db->count() - 1;
 
-    $i = 0;
+    $x = 0;
     while ($num_comments >= $i) { 
         $com = $comments[$i]->comment;
         //return ($com);
          //com ="<br>";
         echo $com."<br>";
-        $i++;
+        $x++;
 
     }
     //return ($com);
@@ -53,6 +53,7 @@ function showcomments($theid)
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/w3.css">
     <script src="js/main.js"></script>
        
 </head>
@@ -93,13 +94,13 @@ function showcomments($theid)
                 <h2> Welcome <?php echo escape($user->data()->name); ?></h2>
         </div>
         <!-- START post -->
-        <div class="thumb_nail">
+        <div class="w3-row-padding w3-margin-top">
             <?php
 					$db = DB::getInstance();
 					$db->get("gallery",array('user_id', '>', 1));
 					$images = $db->results();
 					$num_images = $db->count() - 1;
-					$items_per_page = 5;
+					$items_per_page = 3;
 					$total_pages = ceil($num_images/$items_per_page);
 					$page = 1;
 
@@ -112,16 +113,15 @@ function showcomments($theid)
 						$page = $_GET['page'];
 					}
 
-					$this_page_first_result = ($page - 1) * $items_per_page;
+					$this_page_first_result = (intval($page) - 1) * $items_per_page;
 					$sql = "SELECT * FROM gallery LIMIT " . $items_per_page . " OFFSET " . $this_page_first_result ;
 					$db->query($sql);
 					$result = $db->results();
 					$num_res = $db->count();	
 
-					$i = 0;
-                
-				for ($i=0; $i < $num_res && $num_images >= 0; $i++) { 
+                    $i = 0;
                     $y = 0;
+				for ($i=0; $i < $num_res; $i++) { 
                     $img = $result[$i]->img_name;
                     $time = $result[$i]->time_stamp;
                     $imgid = $result[$i]->img_id;
@@ -133,39 +133,47 @@ function showcomments($theid)
 
                     $db->get("comments",array('img_id', '=', $imgid));
                     $comments = $db->results();
-                    $t1 = json_encode($comments);
-                    //echo $t1;
+                    $num_comments = $db->count() - 1;
                     echo 
                     "
-                    <div class='post-entry-horzontal'>
-                        <div class = 'image'>
-                            <img src='$img' width='450px' heigh='400px' align = 'center'>
-                        </div>
-                        <span class = 'text'>
-                            <div class='post-meta'>
+                    <div class='w3-third'>
+                        <div class = 'w3-card'>
+                            <img src='".$result[$i]->img_name."' style='width:100%'>"."<br>
+                            <div class='w3-container'>
                                 <form action = 'likes.php' method = 'post'>
-                                    $total_likes  <input type='submit' class = 'like' value = 'LIKE'/>
-                                    <input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/>
+                                    <p>$total_likes  <input type='submit' class = 'like' value = 'LIKE'/></p>
+                                    <input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/></p>
+                                    <input type='hidden' name='page_no' id = 'page_no' value = '$page'/></p>
                                 </form>
-                                <span class='mr-2'>$time</span> &bullet;
-                                <span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span>
-                                <Button class = 'viewComments' onclick='hidetest(".$y.")'>View Comments</button>
-                                <div id = 'hidden".$y."' style = 'display:none' >
-                                    <p id='$imgid'><script>loadmycomms('".$t1."','".$imgid."');showme();</script></p><hr></br>
-                                </div>
+                                <p><span class='mr-2'>$time</span> &bullet;
+                                <span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span></p>
+                                <p><Button class = 'viewComments' onclick='hidetest(".$y.")'>View Comments</button></p>
+                                <div id = 'hidden".$y."' style = 'display:none' >";
+                                    $x = 0;
+                                    while ($num_comments >= $x) { 
+                                        $com = $comments[$x]->comment;
+                                        echo $com."<br><hr>";
+                                        $x++;
+                                    }
+                    echo
+                    "
+                               </div>
                                 <form action = 'comments.php' method='post'>
-                                    <input style = 'width: 290px' type='text' name='comment' id = 'comment' autocomplete='off' placeholder='Comment on Picture' align = 'left'/>
+                                    <input style = 'width: 100%' type='text' class= 'w3-input' name='comment' id = 'comment' autocomplete='off' placeholder='Comment on Picture' align = 'left'/>
                                     <input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/>
-                                    <input type='submit' value = 'send'/>
+                                    <input type='submit' class = 'like2' value = 'Comment'/>
+                                    <input type='hidden' name='page_num' id = 'page_num' value = '$page'/></p>
                                 </form>
+                                <p> </p>
                             </div>
-                        </span>
+                        </div>
                     </div>
 
                     ";
                     $num_images--;
                     $y++;
                 }
+               // echo ($page);
 
                 for ($page=1;$page<=$total_pages;$page++) {
                     echo '<a href="gallery.php?page=' . $page . '">' . $page . '</a> ';
