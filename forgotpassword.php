@@ -25,10 +25,6 @@
         {
             echo "Reset Password Email Sent.</br>";
         }
-        else
-        {
-            echo "Email invalid";
-        }
     }
     else
         echo "Email Address not found please register <a href='register.php'>Register Here</a>";

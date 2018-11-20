@@ -16,7 +16,6 @@
         $db->get("comments",array('img_id', '=', $imgid));
         $imid = $db->results();
         $total = $db->count() - 1;
-        echo($total);
     }
 
     //////////////////////////////////
@@ -26,24 +25,25 @@
     $db->get("gallery",array('img_id', '=', $imgid));
     $theid = $db->results();
     $the_userid = $theid[0]->user_id;
-
     $db->get("users",array('user_id', '=', $the_userid));
     $emails = $db->results();
     $email = $emails[0]->email;
-
-    echo $email;
-    $to = $email;
-    $comment = Input::get('comment');
-    $subject = "Camagru activation code";
-    $txt = "You got a new Comment saying:<br>$comment";
-    $mail = mail($to,$subject,$txt);
-    if ($mail)
+    $notify = $emails[0]->notification;
+    if ($notify === '1')
     {
-        echo "Confirmation Email Sent.";
-    }
-    else
-    {
-        echo "Email invalid";
+        $to = $email;
+        $comment = Input::get('comment');
+        $subject = "Camagru activation code";
+        $txt = "You got a new Comment saying:<br>$comment";
+        $mail = mail($to,$subject,$txt);
+        if ($mail)
+        {
+            echo "Confirmation Email Sent.";
+        }
+        else
+        {
+            echo "Email invalid";
+        }
     }
 
     /////////////////////////////

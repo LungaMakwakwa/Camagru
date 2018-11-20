@@ -49,13 +49,11 @@
         {
     ?>  
             <!-- Top BAR -->  
-            <div class="top-bar">
-                <div class="container">
+            <div class="top-bar top-bar w3-animate-top">
+                <div class="container w3-container w3-animate-zoom">
                     <div class="col-9 social">
 						<a href= "gallery.php">Gallery</a>
 						<a href = "update_details.php">Update Details</a> 
-						<a href= "update.php">Update</a>
-						<a href= "changepassword.php">Change Password</a>
 						<a href= "logout.php">Log out</a>
                     </div>
                 </div>
@@ -112,7 +110,7 @@
 
 			<!-- EMOJI CONTAINER DIV START -->
         	<div class="w3-responsive">
-				<table class="w3-table-all" width = "500px">
+				<table class="w3-table-all top-bar w3-animate-right" width = "500px">
 					<tr>
 						<td><img id="e1" src="img/emojis/emoj_1.png" height='50px' width='50px' style="margin: 17px"></td>
 						<td><img id="e2" src="img/emojis/emoj_2.png" height='50px' width='50px' style="margin: 17px"></td>
@@ -137,7 +135,7 @@
 			<!-- BOTTOM CONTAINER DIV END -->
 
 			<!-- POST DIV/ THUMBNAIL START -->
-			<div class="w3-row-padding w3-margin-top">
+			<div class="w3-row-padding w3-margin-top w3-animate-left">
 				<?php
 					$db = DB::getInstance();
 					$db->get("gallery",array('user_id', '=', $user->data()->user_id));
@@ -181,11 +179,16 @@
 									<img src='".$result[$i]->img_name."' style='width:100%'>"."<br>
 									<div class='w3-container'>
                                     	<p>$total_likes  <input type='submit' class = 'like2' value = 'LIKE'/></p>
-                                    	<p><input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/></p>
+										<p><input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/></p>
+										<form action = 'delete_img.php' method = 'post'>
+                                    		<p><input type='submit' class = 'like2' value = 'DELETE PICTURE'/></p>
+                                    		<input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/></p>
+                                    		<input type='hidden' name='page_no' id = 'page_no' value = '$page'/></p>
+                                		</form>
 										<p><span class='mr-2'>$time</span> &bullet;
 										<span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span></p>
 										<p><Button class = 'viewComments' onclick='hidetest(".$y.")'>View Comments</button></p>
-										<div id = 'hidden".$y."' style = 'display:none' >";
+										<div id = 'hidden".$y."' class ='w3-animate-bottom' style = 'display:none' >";
 											$x = 0;
 											while ($num_comments >= $x) { 
 												$com = $comments[$x]->comment;
@@ -361,8 +364,8 @@
     {
         ?>
         <!-- START header -->
-        <div class="top-bar">
-        <div class="container">
+        <div class="top-bar top-bar w3-animate-top">
+        <div class="container w3-container w3-animate-zoom">
             <div class="col-9 social">
               <p align = "center">WELCOME TO CAMAGRU</p>
               <!-- <img src = "img/camera_icon.jpg" alt = "camera icon" height = "75px" width = "75px"> -->

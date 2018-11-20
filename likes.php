@@ -45,23 +45,27 @@
                 $db->get("gallery",array('img_id', '=', $imgid));
                 $theid = $db->results();
                 $the_userid = $theid[0]->user_id;
-
                 $db->get("users",array('user_id', '=', $the_userid));
                 $emails = $db->results();
                 $email = $emails[0]->email;
-
+                $notify = $emails[0]->notification;
+                echo $notify;
                 echo $email;
-                $to = $email;
-                $subject = "Camagru activation code";
-                $txt = "You got a new Like";
-                $mail = mail($to,$subject,$txt);
-                if ($mail)
+
+                if ($notify === '1')
                 {
-                    echo "Confirmation Email Sent.";
-                }
-                else
-                {
-                    echo "Email invalid";
+                    $to = $email;
+                    $subject = "Camagru activation code";
+                    $txt = "You got a new Like";
+                    $mail = mail($to,$subject,$txt);
+                    if ($mail)
+                    {
+                        echo "Confirmation Email Sent.";
+                    }
+                    else
+                    {
+                        echo "Email invalid";
+                    }
                 }
             }
             else

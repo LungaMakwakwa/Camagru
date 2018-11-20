@@ -75,12 +75,11 @@ function showcomments($theid)
         {
     ?>  
             <!-- Top BAR -->  
-            <div class="top-bar">
-                <div class="container">
+            <div class="top-bar top-bar w3-animate-top">
+                <div class="container w3-container w3-animate-zoom">
                     <div class="col-9 social">
                         <a href= "index.php">Profile</a>
-						<a href= "update.php">Update details</a>
-						<a href= "changepassword.php">Change Password</a>
+						<a href= "update_details.php">Update details</a>
 						<a href= "logout.php">Log out</a>
                     </div>
                 </div>
@@ -94,7 +93,7 @@ function showcomments($theid)
                 <h2> Welcome <?php echo escape($user->data()->name); ?></h2>
         </div>
         <!-- START post -->
-        <div class="w3-row-padding w3-margin-top">
+        <div class="w3-row-padding w3-margin-top w3-animate-left">
             <?php
 					$db = DB::getInstance();
 					$db->get("gallery",array('user_id', '>', 1));
@@ -148,7 +147,7 @@ function showcomments($theid)
                                 <p><span class='mr-2'>$time</span> &bullet;
                                 <span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span></p>
                                 <p><Button class = 'viewComments' onclick='hidetest(".$y.")'>View Comments</button></p>
-                                <div id = 'hidden".$y."' style = 'display:none' >";
+                                <div id = 'hidden".$y."' style = 'display:none' class = 'w3-margin-top w3-animate-top' >";
                                     $x = 0;
                                     while ($num_comments >= $x) { 
                                         $com = $comments[$x]->comment;
@@ -193,8 +192,8 @@ function showcomments($theid)
     {
         ?>
         <!-- START header -->
-        <div class="top-bar">
-        <div class="container">
+        <div class="top-bar top-bar w3-animate-top">
+        <div class="container w3-container w3-animate-zoom">
             <div class="col-9 social">
               <p align = "center">WELCOME TO CAMAGRU</p>
               <!--<img src = "img/camera_icon.jpg" alt = "camera icon" height = "75px" width = "75px">-->

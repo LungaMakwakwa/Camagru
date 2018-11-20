@@ -17,8 +17,7 @@
         <div class="w3-container w3-animate-zoom">
             <div class="col-9 social w3-animate-right">
                 <a class="w3-animate-zoom" href= "index.php">Profile</a>
-			    <a class="w3-animate-zoom" href= "update.php">Update details</a>
-				<a class="w3-animate-zoom" href= "changepassword.php">Change Password</a>
+			    <a href= "gallery.php">Gallery</a>
 				<a class="w3-animate-zoom" href= "logout.php">Log out</a>
             </div>
         </div>
@@ -74,9 +73,27 @@
 
     <!-- START NOTIFICATION DETAILS AREA-->
     <div>
-    <form action = "" method="post" class="w3-container w3-card-4 w3-animate-right">
+    <form action = "notification.php" method="post" class="w3-container w3-card-4 w3-animate-right">
         <h2 align="center">Notifications</h2>
-        <input class="w3-animate-left" type="checkbox" name="vehicle" value="Bike"> Send Notification Emails<br>
+        <input class="w3-animate-left" type="checkbox" name="notify" value="notify" 
+            <?php
+                require_once "core/init.php";
+                $user = new User();
+                $user_id = $user->data()->user_id;
+                $db = DB::getInstance();
+                $db->get("users",array('user_id', '=', $user_id));
+                $notify = $db->results();
+                $notify_no = $notify[0]->notification;
+                if ($notify_no === '1')
+                {
+                    echo ("checked");
+                }
+                else if ($notify_no === '0')  
+                {
+                    echo ("");
+                }
+            ?> 
+        > Send Notification Emails<br>
         <div>
             <button class="w3-button w3-section w3-teal w3-ripple"> Update </button>
         </div>
@@ -86,12 +103,12 @@
 
     <!-- START PASSWORD DETAILS AREA-->
     <div>
-    <form action = "" method="post" class="w3-container w3-card-4 w3-animate-left">
+    <form action = "update_password.php" method="post" class="w3-container w3-card-4 w3-animate-left">
         <h2 align="center">Password</h2>
 
         <div class = "field">
             <p class="w3-animate-left">
-                <input class="w3-input" name="current_password" id = "current_password" type="current_password" style="width:90%" required>
+                <input class="w3-input" name="current_password" id = "current_password" type="password" style="width:90%" required>
                 <label>Current Password</label>
             </p>
         </div>
@@ -116,6 +133,25 @@
     <p> </p>
     </div>
     </div>
+    <?php
+        require_once "core/init.php";
+
+        if(Session::exists('new_pw'))
+        {
+            $details = Session::flash('new_pw');
+            echo "<p align = 'center'>$details</p>";
+        }
+        else if(Session::exists('currPw'))
+        {
+            $details = Session::flash('currPw');
+            echo "<p align = 'center'>$details</p>";
+        }
+        else if(Session::exists('NewPw'))
+        {
+            $details = Session::flash('NewPw');
+            echo "<p align = 'center'>$details</p>";
+        }
+    ?>
 
 </body>
 </html>
