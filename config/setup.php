@@ -1,38 +1,45 @@
 <?php
-   $servername = "localhost";
-   $username = "root";
-   $password = "19971228";
-   $dbname = "camagru";
+    include "database.php";
 
-   //connection
-   $conn = mysqli_connect($servername, $username, $password, $dbname);
-   //check connection
-   if (!$conn)
-   {
-       die("Connection failed" . mysqli_connect_error());
-   }
-
-   //sql to create table
-   $sql = "CREATE TABLE `users` (
-       `users_id` int(11) AUTO_INCREMENT PRIMARY KEY,
-       `username` varchar(20),
-       `passwrd` varchar(64),
-       `salt` varchar(32),
-       `name` varchar(50),
-       `joined` datetime(),
-       `groups` int(11)
-   )";
-
-    $sql = "CREATE TABLE `groups` (
-    `ids` int(11) AUTO_INCREMENT PRIMARY KEY,
-    `name` varchar(20),
-    `permissions` text()
-    )";
-
-    $sql = "CREATE TABLE `user_session` (
-    `ids` int(11) AUTO_INCREMENT PRIMARY KEY,
-    `users_id` int(11),
-    `hash` varchar(50)
-    )";
+    try {
+        $dbh = new PDO("mysql:host=$DB_DNS", $DB_USER, $DB_PASSWORD);
+        $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
+        $dbh->exec("CREATE DATABASE IF NOT EXISTS camagru;")
+        or die(print_r($dbh->errorInfo(), true));
+        $dbh->exec("CREATE TABLE `camagru`.`users`(
+            `user_id` INT(11) NOT NULL AUTO_INCREMENT,
+            `username` VARCHAR(255) NOT NULL,
+            `password` VARCHAR(255) NOT NULL,
+            `name` VARCHAR(255) NOT NULL,
+            `joined` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            `email` VARCHAR(255) NOT NULL,
+            `email_code` VARCHAR(255) NOT NULL,
+            `activate` INT(64) NOT NULL DEFAULT 0,
+            `notification` INT(64) NOT NULL DEFAULT 1,
+            PRIMARY KEY(`user_id`)
+        )");
+        $dbh->exec("CREATE TABLE `camagru`.`gallery`(
+            `img_id` INT(11) NOT NULL AUTO_INCREMENT,
+            `img_name` VARCHAR(255) NOT NULL,
+            `user_id` INT(255) NOT NULL,
+            `time_stamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            PRIMARY KEY(`img_id`)  
+        )");
+        $dbh->exec("CREATE TABLE `camagru`.`comments`(
+            `comment_id` INT(255) NOT NULL AUTO_INCREMENT,
+            `comment` VARCHAR(255) NOT NULL,
+            `img_id` INT(255) NOT NULL,
+            `user_id` INT(255) NOT NULL,
+            PRIMARY KEY(`comment_id`)
+        )");
+        $dbh->exec("CREATE TABLE `camagru`.`likes`(
+            `like_id` INT(255) NOT NULL AUTO_INCREMENT,
+            `img_id` INT(255) NOT NULL,
+            `user_id` INT(255) NOT NULL,
+            PRIMARY KEY(`like_id`)
+        )");
+    } catch (PDOException $e) {
+        die("DB ERROR: ". $e->getMessage());
+    }
 
 ?>

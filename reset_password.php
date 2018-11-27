@@ -37,6 +37,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/w3.css">
 
 </head>
 <body>
@@ -60,12 +61,12 @@
     <!-- START content area -->
     <div align = "center">
     <div class="field">
-        <form method="post">
+        <form method="post" class="w3-container w3-card-4 w3-animate-left">
             <label for="password">New Password</label></br>
-            <input type="password" name="password" id="password" placeholder="Enter New Password"></br>
+            <input class="w3-input" type="password" name="password" id="password"></br>
             <label for="password">Verify New Password</label></br>
-            <input type="password" name="password_again" id="password_again" placeholder="Enter New Password Again"></br>
-            <input type="submit" value="Reset Password">
+            <input class="w3-input" type="password" name="password_again" id="password_again"></br>
+            <input class="w3-button w3-section w3-teal w3-ripple" type="submit" value="Reset Password">
         </form>
     </div>
     

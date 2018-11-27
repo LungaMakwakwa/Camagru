@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Register</title>
+    <title>Update Details</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
@@ -152,6 +152,9 @@
             echo "<p align = 'center'>$details</p>";
         }
     ?>
+    <footer class = "site-footer2">
+        <p>@lmakwakw2018</p>
+    <footer>
 
 </body>
 </html>

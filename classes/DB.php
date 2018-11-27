@@ -16,6 +16,7 @@
         private function __construct() {
             try {
                 $this->_pdo = new PDO('mysql:host=' . Config::get('mysql/host') . ';dbname='. Config::get('mysql/db'), config::get('mysql/username'), config::get('mysql/password'));
+                $this->_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
             //  )))echo 'Connected';
             }
             catch(PDOException $e) {
@@ -46,7 +47,10 @@
                 //if no params still execute query
                 if ($this->_query->execute()) {
                     //echo 'success';
-                    $this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
+                    if (strpos($sql, "SELECT") !== false) {
+				
+                        $this->_results = $this->_query->fetchALL(PDO::FETCH_OBJ);
+                    }
                     $this->_count = $this->_query->rowCount();
                 } else {
                     $this->_error = true;
@@ -119,14 +123,15 @@
                     $x++;
                 }
                 $sql = "INSERT INTO {$table} (`" . implode('`,`', $keys) . "`) VALUES ({$values})";
-                //echo $values;
+
+                // echo $values."<br>";
 
                 if (!$this->query($sql, $fields)->error()) {
                     return true;
                 }
 
-               echo $sql."\n";
-                //print_r (escape($fields));
+            //    echo $sql."<br>";
+            //    print_r ($fields);
             }
             return false;
         }

@@ -20,8 +20,16 @@
                 $login = $user->login(Input::get('username'), Input::get('password'));
                 if($login)
                 {
-                    Redirect::to('index.php');
-                    //echo "ok";
+                    $act = $user->data()->activate;
+                    //echo $act;
+                    if ($act === '1')
+                    {
+                        Redirect::to('index.php');
+                    }
+                    else
+                    {
+                        echo "Please Activate your account";
+                    }
                 }
                 else
                 {
@@ -102,5 +110,8 @@
     </form>
     <link rel="stylesheet" href="css/style.css">
     </div>
+    <footer class = "site-footer2">
+        <p>@lmakwakw</p>
+    <footer>
 </body>
 </html>

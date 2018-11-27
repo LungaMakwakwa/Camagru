@@ -9,7 +9,7 @@
         $db = DB::getInstance();
         $imgid = Input::get('imgid');
         $db->insert('comments', array(
-            'comment' => Input::get('comment'),
+            'comment' => escape(Input::get('comment')),
             'img_id' =>  $imgid,
             'user_id' => $user->data()->user_id
         ));

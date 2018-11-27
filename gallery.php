@@ -49,12 +49,12 @@ function showcomments($theid)
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>index</title>
+    <title>Gallery</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/w3.css">
-    <script src="js/main.js"></script>
+    <!-- <script src="js/main.js"></script> -->
        
 </head>
 <body background="bg.jpg">
@@ -113,7 +113,7 @@ function showcomments($theid)
 					}
 
 					$this_page_first_result = (intval($page) - 1) * $items_per_page;
-					$sql = "SELECT * FROM gallery LIMIT " . $items_per_page . " OFFSET " . $this_page_first_result ;
+					$sql = "SELECT * FROM gallery ORDER BY time_stamp DESC LIMIT " . $items_per_page . " OFFSET " . $this_page_first_result ;
 					$db->query($sql);
 					$result = $db->results();
 					$num_res = $db->count();	
@@ -173,10 +173,12 @@ function showcomments($theid)
                     $y++;
                 }
                // echo ($page);
-
+                echo "</div>";
+                echo "<div align='center' class='pagination2'>";
                 for ($page=1;$page<=$total_pages;$page++) {
                     echo '<a href="gallery.php?page=' . $page . '">' . $page . '</a> ';
                 }
+                echo "</div>";
             ?>
             </div>
         </div>
@@ -204,39 +206,89 @@ function showcomments($theid)
             <?php 
                 echo '<p> You need to <a href="login.php">log in</a> or <a href="register.php">register</a>!</p>';
             ?>
-            <!-- Start Post-->
-            <div class="thumb_nail">
-            <div class='post-entry-horzontal'>
-			<?php
-				$db = DB::getInstance();
-                $db->get("gallery",array('user_id', '>', 0));
-                $images = $db->results();
-				$num_images = $db->count() - 1;
+            <!-- START post -->
+        <div class="w3-row-padding w3-margin-top w3-animate-left">
+            <?php
+					$db = DB::getInstance();
+					$db->get("gallery",array('user_id', '>', 1));
+					$images = $db->results();
+					$num_images = $db->count() - 1;
+					$items_per_page = 3;
+					$total_pages = ceil($num_images/$items_per_page);
+					$page = 1;
 
-				for ($i=0; $i < 10 && $num_images >= 0; $i++) { 
-                    $img = $images[$num_images]->img_name;
-                    $time = $images[$num_images]->time_stamp;
-                    $imgid = $images[$num_images]->img_id;
+					if (!isset($_GET['page']))
+					{
+						$page = 1;
+					}
+					else
+					{
+						$page = $_GET['page'];
+					}
+
+					$this_page_first_result = (intval($page) - 1) * $items_per_page;
+					$sql = "SELECT * FROM gallery ORDER BY time_stamp DESC LIMIT " . $items_per_page . " OFFSET " . $this_page_first_result ;
+					$db->query($sql);
+					$result = $db->results();
+					$num_res = $db->count();	
+
+                    $i = 0;
+                    $y = 0;
+				for ($i=0; $i < $num_res; $i++) { 
+                    $img = $result[$i]->img_name;
+                    $time = $result[$i]->time_stamp;
+                    $imgid = $result[$i]->img_id;
+                    //$img = $images[$num_images]->img_name;
+                    //$time = $images[$num_images]->time_stamp;
+                    //$imgid = $images[$num_images]->img_id;
                     $total = commentcount($imgid);
+                    $total_likes = likecount($imgid);
+
+                    $db->get("comments",array('img_id', '=', $imgid));
+                    $comments = $db->results();
+                    $num_comments = $db->count() - 1;
                     echo 
                     "
-                        
-                        <div class = 'image'>
-                            <img src='$img' width='200px' heigh='167px' >
-                        </div>
-                        <span class = 'text'>
-                            <div class='post-meta'>
-                                <span class='mr-2'>$time</span> &bullet;
-                                <span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span>
-                                <input type='hidden' name='imgid' id = 'imgid' value = '$imgid'/>
+                    <div class='w3-third'>
+                        <div class = 'w3-card'>
+                            <img src='".$result[$i]->img_name."' style='width:100%'>"."<br>
+                            <div class='w3-container'>
+                                <form action = '' method = 'post'>
+                                    <p>$total_likes  <input type='submit' class = 'like' value = 'LIKE[S]'/></p>
+                                </form>
+                                <p><span class='mr-2'>$time</span> &bullet;
+                                <span class= 'ml-1'><span class= 'fa fa-comments'></span>$total</span></p>
+                                <p><Button class = 'viewComments' onclick='hidetest(".$y.")'>View Comments</button></p>
+                                <div id = 'hidden".$y."' style = 'display:none' class = 'w3-margin-top w3-animate-top' >";
+                                    $x = 0;
+                                    while ($num_comments >= $x) { 
+                                        $com = $comments[$x]->comment;
+                                        echo $com."<br><hr>";
+                                        $x++;
+                                    }
+                    echo
+                    "
+                               </div>
+                                <p> </p>
                             </div>
-                        </span>
+                        </div>
+                    </div>
 
                     ";
-					$num_images--;
-                } 
+                    $num_images--;
+                    $y++;
+                }
+               // echo ($page);
+                echo "</div>";
+                echo "<div align='center' class='pagination2'>";
+                for ($page=1;$page<=$total_pages;$page++) {
+                    echo '<a href="gallery.php?page=' . $page . '">' . $page . '</a> ';
+                }
+                echo"</div>"
             ?>
             </div>
+        </div>
+        <!-- END post -->
         </div>
         </section>
         <?php
@@ -261,5 +313,8 @@ function showcomments($theid)
             }
         }
     </script>
+    <footer class = "site-footer2">
+        <p>@lmakwakw2018</p>
+    <footer>
     </body>
 </html>

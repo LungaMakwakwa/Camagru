@@ -6,11 +6,11 @@
     $db = DB::getInstance();
     $db->get("users",array('email', '=', $email));
     $emails = $db->results();
-    if ($db->count() === 0)
-    {
-        echo "Error email doesnt Exist";
-    }
-    else
+    // if ($db->count() === 0)
+    // {
+    //     echo "Error email doesnt Exist";
+    // }
+    if ($db->count() > 0)
     {
     $avail_email = $emails[0]->email;
     $user_id = $emails[0]->user_id;
@@ -27,8 +27,11 @@
         }
     }
     else
+    {
         echo "Email Address not found please register <a href='register.php'>Register Here</a>";
+    }
 }
+
 
 ?>
 
@@ -83,5 +86,8 @@
     
     <link rel="stylesheet" href="css/style.css">
     </div>
+    <footer class = "site-footer2">
+        <p>@lmakwakw2018</p>
+    <footer>
 </body>
 </html>

@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="css/style.css">
 	<link rel="stylesheet" href="css/w3.css">
 	<script src="js/main.js"></script>
-	
+	<style>
+		.body{
+			background-image:url('img_smallflower.jpg');		
+		}
+	</style>
 	<!--script src="js/pagination.js"></script-->
        
 </head>
@@ -66,7 +70,7 @@
 		<!-- TOP CONTAINER DIV START -->
         <div class="top_container">  
 			<h2 align = "center"> Welcome <?php echo escape($user->data()->name); ?></h2>
-
+			
 			<!-- MAIN CONTAINER DIV START -->
 			<div class = "main-container">
 			
@@ -79,10 +83,11 @@
 					</div>
 					<!-- END OVERLAY DIV -->
 				</div>
+			</div>
 				<!-- KEEP OVERLAY IN PLACE DIV -->
 				
             	<!-- VIDEO DIV -->
-            	<div class = "video" width = "500" height = "375" border = "2px" bordercolor = "red" align = "center" style='width = 100%'>
+				<div class = "video" width = "500" height = "375" border = "2px" bordercolor = "red" align = "center" >
 					<video id="video">
 						<div id="overlay" class="overlay">
 							<img class="text" height='100px' width='100px' id="emoji1" name="emoji1" onclick="off()">
@@ -156,7 +161,7 @@
 
 					$this_page_first_result = ($page - 1) * $items_per_page;
 					$user_id = $user->data()->user_id;
-					$sql = "SELECT * FROM gallery WHERE user_id = $user_id LIMIT " . $items_per_page . " OFFSET " . $this_page_first_result ;
+					$sql = "SELECT * FROM gallery WHERE user_id = $user_id ORDER BY time_stamp DESC LIMIT " . $items_per_page . " OFFSET " . $this_page_first_result ;
 					$db->query($sql);
 					$result = $db->results();
 					$num_res = $db->count();	
@@ -363,24 +368,15 @@
     else
     {
         ?>
-        <!-- START header -->
-        <div class="top-bar top-bar w3-animate-top">
-        <div class="container w3-container w3-animate-zoom">
-            <div class="col-9 social">
-              <p align = "center">WELCOME TO CAMAGRU</p>
-              <!-- <img src = "img/camera_icon.jpg" alt = "camera icon" height = "75px" width = "75px"> -->
-            </div>
-        </div>
-        </div>
-        <section class="site-section">
             <?php 
-				echo '<p> You need to <a href="login.php">LOG IN</a> or <a href="register.php">REGISTER</a>  or view <a href="gallery.php">GALLERY</a>!</p>';
+				REDIRECT::to("not_loggedin_index.php");
             ?>
-        </section>
         <?php
     }
     ?>
-
+	<footer class = "site-footer2">
+        <p>@lmakwakw2018</p>
+    <footer>
 
 
     </body>
