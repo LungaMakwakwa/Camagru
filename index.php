@@ -68,39 +68,36 @@
             <hr>
 
 		<!-- TOP CONTAINER DIV START -->
-        <div class="top_container">  
+        <div class="main-container">  
 			<h2 align = "center"> Welcome <?php echo escape($user->data()->name); ?></h2>
 			
 			<!-- MAIN CONTAINER DIV START -->
-			<div class = "main-container">
-			
-				<!-- KEEP OVERLAY IN PLACE DIV -->
-				<div class="overlay2">
-					<!-- OVERLAY DIV -->
+			<div class = "top-container">
+					<!-- OVERLAY DIV
 					<div id="overlay" class="overlay">
 						<img class="text" height='100px' width='100px' id="emoji1" name="emoji1" onclick="off()">
 						<img onclick="off2()" class="text" height='100px' width='100px' id="emoji2" name="emoji2">
 					</div>
-					<!-- END OVERLAY DIV -->
-				</div>
-			</div>
+					END OVERLAY DIV -->
+			
 				<!-- KEEP OVERLAY IN PLACE DIV -->
 				
             	<!-- VIDEO DIV -->
-				<div class = "video" width = "500" height = "375" border = "2px" bordercolor = "red" align = "center" >
-					<video id="video">
+				<div class = "video" width = "500" height = "375" border = "2px" bordercolor = "red">
 						<div id="overlay" class="overlay">
 							<img class="text" height='100px' width='100px' id="emoji1" name="emoji1" onclick="off()">
 							<img onclick="off2()" class="text" height='100px' width='100px' id="emoji2" name="emoji2">
 						</div>
+					<video id="video">
 						Stream not available				
 					</video>
 					<img id="uploaded_image" height='375px' width='500px' style= "display:none">
-            	</div>
+				</div>
+				</div>
 				<!-- END VIDEO DIV-->
 				
 				<!-- BUTTONS AND CANVAS STARTS -->
-				<div align = "center">
+				<div>
 					<button class= "w3-button w3-section w3-teal w3-ripple" id="photo_button">Take Photo</button>
 					<canvas id="canvas2"></canvas>
 					<button class= "w3-button w3-section w3-teal w3-ripple" id="save_photo">Save</button>

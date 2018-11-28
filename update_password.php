@@ -8,20 +8,20 @@
 
     $curr_password = escape(Input::get('current_password'));
     $curr_password_harsh = Hash::make($curr_password);
-    echo("current password entered harsh = $curr_password_harsh</br>");
+    //echo("current password entered harsh = $curr_password_harsh</br>");
     $db->get("users",array('user_id', '=', $user_id));
     $theid = $db->results();
     $the_userid = $theid[0]->user_id;
     $the_password = $theid[0]->password;
-    echo("current password harsh = $curr_password_harsh</br>");
+    //echo("current password harsh = $curr_password_harsh</br>");
 
 
     if (strcmp($curr_password_harsh,$the_password) === 0)
     {
         $password = escape(Input::get('password'));
         $password_again = escape(Input::get('password_again'));
-        echo("password = $password</br>");
-        echo("password again = $password_again</br>");
+        //echo("password = $password</br>");
+        //echo("password again = $password_again</br>");
         if (strcmp($password, $password_again) === 0)
         {
             $password_harsh = Hash::make(Input::get('password'));

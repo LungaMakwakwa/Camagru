@@ -24,8 +24,5 @@
 				echo '<p> You need to <a href="login.php">LOG IN</a> or <a href="register.php">REGISTER</a>  or view <a href="gallery.php">GALLERY</a>!</p>';
             ?>
         </section>
-    <footer class = "site-footer2">
-        <p>@lmakwakw2018</p>
-    <footer>
 </body>
 </html>

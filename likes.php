@@ -49,8 +49,8 @@
                 $emails = $db->results();
                 $email = $emails[0]->email;
                 $notify = $emails[0]->notification;
-                echo $notify;
-                echo $email;
+                //echo $notify;
+                //echo $email;
 
                 if ($notify === '1')
                 {

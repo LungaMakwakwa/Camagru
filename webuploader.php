@@ -14,7 +14,7 @@
         $imgnum = $db->get("gallery",array('user_id', '=', $user->data()->user_id));
         $img_id = $imgnum->count() + 1;
         $user_id = $user->data()->user_id;
-        echo ($user_id);
+        //echo ($user_id);
         
         $data = explode( ',', $_POST["img64"] );
         //print_r ($data);

@@ -276,7 +276,7 @@ body {
 /***************************************************************/
 
 
-#overlay {
+/* #overlay {
   position: absolute;
   width: 500;
   height: 375;
@@ -286,8 +286,33 @@ body {
   bottom: 30;
   z-index: 2;
   background: #007bff;
+  background-color: #007bff;
+  cursor: pointer;
+} */
+
+#overlay {
+  position: absolute;
+  display: block;
+  width: 20%;
+  height: 20%;
+  top: 100;
+  left: 60;
+  right: 70;
+  bottom: 30;
+  /* padding-left: 259px; */
+  z-index: 2;
   cursor: pointer;
 }
+
+/* #text{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  background: #007bff;
+  background-color: #007bff;
+} */
 
 #text{
   position: absolute;
@@ -295,16 +320,15 @@ body {
   left: 50%;
   font-size: 50px;
   color: white;
-  background: #007bff;
 }
 
 #canvas
 {
-    display: none;
+  display: none;
 }
 #canvas2
 {
-    display: none;
+  display: none;
 }
 
 #emoji1
