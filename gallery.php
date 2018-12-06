@@ -96,7 +96,7 @@ function showcomments($theid)
         <div class="w3-row-padding w3-margin-top w3-animate-left">
             <?php
 					$db = DB::getInstance();
-					$db->get("gallery",array('user_id', '>', 1));
+					$db->get("gallery",array('user_id', '>', 0));
 					$images = $db->results();
 					$num_images = $db->count() - 1;
 					$items_per_page = 3;
@@ -210,7 +210,7 @@ function showcomments($theid)
         <div class="w3-row-padding w3-margin-top w3-animate-left">
             <?php
 					$db = DB::getInstance();
-					$db->get("gallery",array('user_id', '>', 1));
+					$db->get("gallery",array('user_id', '>', 0));
 					$images = $db->results();
 					$num_images = $db->count() - 1;
 					$items_per_page = 3;
