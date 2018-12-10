@@ -77,6 +77,13 @@
     <div class="container">
         <hr>
     </div>
+    <?php
+    if(Session::exists('Reset'))
+        {
+            $details = Session::flash('Reset');
+            echo "<p align = 'center'>$details</p>";
+        }
+    ?>
     <!-- END header -->
 
     <!-- START content area -->
