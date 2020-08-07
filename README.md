@@ -25,9 +25,9 @@
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [Testing](#Testing)
-- [Security](#Security)
-- [FAQ](#FAQ)
+- [Testing](#testing)
+- [Security](#security)
+- [FAQ](#faq)
 ---
 
 ## Requirements
@@ -43,8 +43,6 @@
 - To build the database run the setup.php file. => http://localhost:8080/camagru/config/setup.php (Replace the 8080 with the port number on your XAMMP or MAMP Application)
 - Then run http://localhost:8080/camagru/ to open access the site. (Replace the 8080 with the port number on your XAMMP or MAMP Application)
 
-## Testing
-
 ## Security
 
 - Does not Store plain or unencrypted passwords in the database.
@@ -54,7 +52,43 @@
 - Does not Use an extern form to manipulate so-called private data
 
 ---
+## Testing
 
+- [x] The database connection must be done using the PDO interface
+
+- [x] Input forms and upload forms have correct validations
+
+- [x] No SQL injection is possible
+
+- [x] User must be able to sign up, by providing at least an email, a username and a password (secured, a usual current word must not be accepted as a password for instance).
+
+- [x] Subscription must be completed by a confirmation email.
+
+- [x] User must be able to connect using they username and must be able to receive an email to reset his password on demand.
+
+- [x] User disconnection must be possible from anywhere on the site.
+
+- [x] The main page must have a decent presentation : at least a header, a main section and a footer.
+
+- [x] Must be on the editing page, the preview of the webcam, the list of superposable images, the button to take the picture and the history of previously edited images as thumbnails.
+
+- [x] The button to take a picture is clickable only if a superposable image is selected.
+
+- [x] It must be possible to upload an image instead of capturing it with the webcam.
+
+- [x] The gallery displays all images of all site members ordered by creation date. The list of images is paginated.
+
+- [x] Each image must be likeable and commentable.
+
+- [x] When an image receives a comment, the author of the commented image must receive a notification by email.
+
+- [x] A user cen delete only his own creations.
+
+- [x] The editing page is not accessable unles the usser is logged in.
+
+- [x] The gallery is public but only a logged in user can like and comment the pictures.
+
+---
 ## FAQ
 
 - How do I change the port of the XAMMP or MAMP application 
