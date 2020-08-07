@@ -47,11 +47,11 @@
 
 ## Security
 
-- Store plain or unencrypted passwords in the database.
-- Offer the ability to inject HTML or “user” JavaScript in badly protected variables.
-- Offer the ability to upload unwanted content on the server.
-- Offer the possibility of altering an SQL query. (Sql Injections) 
-- Use an extern form to manipulate so-called private data
+- Does not Store plain or unencrypted passwords in the database.
+- Does not Offer the ability to inject HTML or “user” JavaScript in badly protected variables.
+- Does not Offer the ability to upload unwanted content on the server.
+- Does not Offer the possibility of altering an SQL query. (Sql Injections) 
+- Does not Use an extern form to manipulate so-called private data
 
 ---
 
