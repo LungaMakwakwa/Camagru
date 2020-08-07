@@ -34,6 +34,7 @@
 
 - Have `XAMPP` or `MAMP` installed.
 - PHP 7.0 or above.
+- Apache 2 or above.
 
 ## Installation
 
